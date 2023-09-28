@@ -1,5 +1,11 @@
 #include <linux/i2c-dev.h>
-#include <i2c/smbus.h>
+//#include <i2c/smbus.h>
+#include <sys/ioctl.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <unistd.h>
 
 int main(){
     // Settings
@@ -15,7 +21,7 @@ int main(){
     snprintf(filename, 19, "/dev/i2c-%d", adapter_nr);
 
     // Open file to read/write
-    file = open(filename, 0_RDWR);
+    file = open(filename, O_RDWR);
     if (file<0){
         /* Error opening I2C */
         printf("Failed to open bus. \n");
